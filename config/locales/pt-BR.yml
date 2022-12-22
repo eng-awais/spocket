@@ -1,0 +1,11 @@
+pt-BR:
+  zip_code: 'cep'
+  public_place: 'logradouro'
+  complement: 'complemento'
+  district: 'bairro'
+  locality: 'localidade'
+  state: 'uf'
+  ibge: 'ibge'
+  gia: 'gia'
+  ddd: 'area_code'
+  siafi: 'siafi'
