@@ -83049,3 +83049,65 @@ Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 5.5ms)
   [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" WHERE "addresses"."customer_id" = $1 LIMIT $2[0m  [["customer_id", 15], ["LIMIT", 1]]
   ↳ app/services/address_creator.rb:12
   [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "addresses"[0m
+Started POST "/api/v1/bulk/customer" for ::1 at 2022-12-23 00:27:32 +0500
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/dev/.rvm/gems/ruby-2.7.2/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::Bulk::CustomerController#create as */*
+  Parameters: {"_json"=>[{"cep"=>"01001000", "name"=>"JOSE"}, {"cep"=>"01001001", "name"=>"JOAO"}, {"cep"=>"01001010", "name"=>"ANTONIO"}]}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[36mCustomer Create (0.3ms)[0m  [1m[32mINSERT INTO "customers" ("zip_code", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["zip_code", "01001000"], ["name", "JOSE"], ["created_at", "2022-12-22 19:27:32.663252"], ["updated_at", "2022-12-22 19:27:32.663252"]]
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[36mCustomer Create (0.2ms)[0m  [1m[32mINSERT INTO "customers" ("zip_code", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["zip_code", "01001001"], ["name", "JOAO"], ["created_at", "2022-12-22 19:27:32.667024"], ["updated_at", "2022-12-22 19:27:32.667024"]]
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[36mCustomer Create (0.1ms)[0m  [1m[32mINSERT INTO "customers" ("zip_code", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["zip_code", "01001010"], ["name", "ANTONIO"], ["created_at", "2022-12-22 19:27:32.668928"], ["updated_at", "2022-12-22 19:27:32.668928"]]
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/bulk/customer_controller.rb:5
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 5.3ms)
+
+
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/workers/customer_address_fetcher.rb:9
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/workers/customer_address_fetcher.rb:9
+  [1m[36mCustomer Load (0.8ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/workers/customer_address_fetcher.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/address_creator.rb:12
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/address_creator.rb:12
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/address_creator.rb:12
+  [1m[36mAddress Create (0.6ms)[0m  [1m[32mINSERT INTO "addresses" ("public_place", "complement", "district", "locality", "state", "ibge", "gia", "area_code", "siafi", "customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["public_place", "Praça da Sé"], ["complement", "lado ímpar"], ["district", "Sé"], ["locality", "São Paulo"], ["state", "SP"], ["ibge", 3550308], ["gia", 1004], ["area_code", 11], ["siafi", 7107], ["customer_id", 19], ["created_at", "2022-12-22 19:27:42.567132"], ["updated_at", "2022-12-22 19:27:42.567132"]]
+  ↳ app/services/address_creator.rb:12
+  [1m[36mAddress Create (0.8ms)[0m  [1m[32mINSERT INTO "addresses" ("public_place", "complement", "district", "locality", "state", "ibge", "gia", "area_code", "siafi", "customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["public_place", "Praça da Sé"], ["complement", "lado par"], ["district", "Sé"], ["locality", "São Paulo"], ["state", "SP"], ["ibge", 3550308], ["gia", 1004], ["area_code", 11], ["siafi", 7107], ["customer_id", 20], ["created_at", "2022-12-22 19:27:42.567687"], ["updated_at", "2022-12-22 19:27:42.567687"]]
+  ↳ app/services/address_creator.rb:12
+  [1m[36mAddress Create (0.4ms)[0m  [1m[32mINSERT INTO "addresses" ("public_place", "complement", "district", "locality", "state", "ibge", "gia", "area_code", "siafi", "customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["public_place", "Rua Filipe de Oliveira"], ["complement", ""], ["district", "Sé"], ["locality", "São Paulo"], ["state", "SP"], ["ibge", 3550308], ["gia", 1004], ["area_code", 11], ["siafi", 7107], ["customer_id", 21], ["created_at", "2022-12-22 19:27:42.568245"], ["updated_at", "2022-12-22 19:27:42.568245"]]
+  ↳ app/services/address_creator.rb:12
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/address_creator.rb:12
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" WHERE "addresses"."customer_id" = $1 LIMIT $2[0m  [["customer_id", 19], ["LIMIT", 1]]
+  ↳ app/services/address_creator.rb:12
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/address_creator.rb:12
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/address_creator.rb:12
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" WHERE "addresses"."customer_id" = $1 LIMIT $2[0m  [["customer_id", 21], ["LIMIT", 1]]
+  ↳ app/services/address_creator.rb:12
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" WHERE "addresses"."customer_id" = $1 LIMIT $2[0m  [["customer_id", 20], ["LIMIT", 1]]
+  ↳ app/services/address_creator.rb:12
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/workers/customer_address_fetcher.rb:9
+  [1m[36mCustomer Load (3.6ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/workers/customer_address_fetcher.rb:9
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/workers/customer_address_fetcher.rb:9

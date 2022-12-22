@@ -14,4 +14,29 @@ ActiveRecord::Schema.define(version: 2022_12_22_101701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "public_place"
+    t.string "complement"
+    t.string "district"
+    t.string "locality"
+    t.string "state"
+    t.integer "ibge"
+    t.integer "gia"
+    t.integer "area_code"
+    t.integer "siafi"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "zip_code", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "addresses", "customers"
 end
