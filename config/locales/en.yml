@@ -1,0 +1,11 @@
+en:
+  cep: 'zip_code'
+  logradouro: 'public_place'
+  complemento: 'complement'
+  bairro: 'district'
+  localidade: 'locality'
+  uf: 'state'
+  ibge: 'ibge'
+  gia: 'gia'
+  ddd: 'area_code'
+  siafi: 'siafi'
